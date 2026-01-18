@@ -11,7 +11,6 @@ from tools import query_assets
 import models, schemas, crud
 from system_prompt import SYSTEM_PROMPT
 
-
 models.Base.metadata.create_all(bind=engine)
 app = FastAPI(title="AI Asset Management API")
 
@@ -54,13 +53,12 @@ def query_agent(req: schemas.AgentRequest):
         system_prompt=SYSTEM_PROMPT,
     )
 
-    answer = agent.invoke(
-        {
-            "messages": [
-                HumanMessage(content=req.question)
-            ]
-        }
-    )
+    messages = {
+        "messages": [
+            HumanMessage(content=req.question)
+        ]
+    }
+    answer = agent.invoke(messages)
     
     final_answer = answer["messages"][-1].content
 
