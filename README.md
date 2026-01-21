@@ -2,18 +2,6 @@
 
 An intelligent asset management system that combines traditional CRUD operations with AI-powered natural language querying. Users can manage assets through a REST API and interact with their data using conversational queries.
 
-## Features
-
-- **CRUD Operations**: Full create, read, update, and delete functionality for assets
-- **AI Agent**: Natural language interface to query and analyze your assets
-- **Short-Term Memory**: The AI agent remembers recent queries within a session for more accurate, context-aware responses.
-- **RESTful API**: Built with FastAPI for high performance and automatic documentation
-- **LangChain Integration**: Leverages LangChain for intelligent agent behavior
-- **SQLite Database**: Lightweight, file-based storage for easy deployment
-- **Docker Support**: One-command deployment with automated build script
-
-
-
 ## Quick Start
 
 ### Prerequisites
