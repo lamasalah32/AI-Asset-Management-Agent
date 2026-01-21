@@ -1,8 +1,5 @@
 import os
-#from langchain_ollama import ChatOllama
 from langchain_openai import ChatOpenAI
-
-#OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
 
 def get_llm():
     return ChatOpenAI(

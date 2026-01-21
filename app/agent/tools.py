@@ -1,21 +1,28 @@
 from langchain.tools import tool
+from sqlalchemy.orm import Session
 from database import SessionLocal
 import crud
+
 
 @tool
 def query_assets(query: str) -> str:
     """
     Query assets from the database using natural language intent.
     """
-    db = SessionLocal()
-    assets = crud.get_assets(db)
+    db: Session = SessionLocal()
+    try:
+        assets = crud.get_assets(db)
+        if not assets:
+            return "No assets found."
 
-    if not assets:
-        return "No assets found."
+        summary = []
+        for a in assets:
+            summary.append(f"{a.name} (${a.value}) - Category: ({a.category}) - Purchased: {a.purchase_date} - Status: {a.status}")
 
-    summary = []
-    for a in assets:
-        summary.append(f"{a.name} (${a.value}) - Category: ({a.category}) - Purchased: {a.purchase_date} - Status: {a.status}")
+        return "Assets: " + ", ".join(summary)
+        
+    finally:
+        db.close()
 
-    return "Assets: " + ", ".join(summary)
 
+    
